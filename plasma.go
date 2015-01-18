@@ -8,6 +8,7 @@ import (
 	"math"
 	"os"
 	"os/exec"
+	"time"
 
 	"github.com/lucasb-eyer/go-colorful"
 )
@@ -15,6 +16,7 @@ import (
 var (
 	width  = flag.Int("w", 512, "Width of the image")
 	height = flag.Int("h", 512, "Height of the image")
+	frames = flag.Int("n", 1, "Number of frames to generate")
 	scale  = flag.Float64("s", 16.0, "Scale of the plasma")
 	ofn    = flag.String("o", "plasma.png", "Output file name")
 	pfn    = flag.String("p", "palette.png", "Palette file name")
@@ -30,25 +32,25 @@ func main() {
 
 	palette := generatePalette()
 
-	renderPalette(palette)
+	renderPalette(palette, *pfn)
 
 	plasma := generatePlasma(w, h, *scale)
 
-	renderPlasma(w, h, plasma, palette)
+	renderPlasma(w, h, plasma, palette, *ofn)
 }
 
-func generatePalette() [255]colorful.Color {
-	var palette [255]colorful.Color
+func generatePalette() [256]colorful.Color {
+	var palette [256]colorful.Color
 
-	for x := 0; x < 255; x++ {
-		palette[x] = colorful.Hsv(float64(x)*1.411764706, 1, 1)
+	for x := 0; x < 256; x++ {
+		palette[x] = colorful.Hsv(float64(x)*1.40625, 1, 1)
 	}
 
 	return palette
 }
 
-func renderPalette(palette [255]colorful.Color) {
-	w := 255
+func renderPalette(palette [256]colorful.Color, fn string) {
+	w := 256
 	h := 10
 
 	p := image.NewRGBA(image.Rect(0, 0, w, h))
@@ -59,10 +61,10 @@ func renderPalette(palette [255]colorful.Color) {
 		}
 	}
 
-	if file, err := os.Create(*pfn); err == nil {
+	if file, err := os.Create(fn); err == nil {
 		defer file.Close()
 		if err := png.Encode(file, p); err == nil {
-			open(*pfn)
+			open(fn)
 		}
 	}
 }
@@ -74,13 +76,13 @@ func generatePlasma(w, h int, s float64) [][]uint8 {
 		plasma[x] = make([]uint8, h)
 
 		i := float64(w) / 2.0
-		j := float64(h) / 2.0
+		j := float64(h) / 3.0
 
 		for y := 0; y < h; y++ {
 			c := uint8(
-				(i + (j * math.Sin(float64(x)/(s*2))) +
-					i + (j * math.Sin(float64(y)/s)) +
-					i + (j * math.Sin(float64(x+y)/s*2)) +
+				(i + (j * math.Sin(float64(x)/s*1.5)) +
+					i + (j * math.Sin(float64(y)/(s*2.5))) +
+					i + (j * math.Sin(math.Sqrt((float64(x-w)/2)*(float64(x-w)/2)+(float64(y-h)/2)*(float64(y-h)/2))/s)) +
 					i + (j * math.Sin(math.Sqrt(float64(x*x+y*y))/s))) / 4.0)
 
 			plasma[x][y] = c
@@ -89,21 +91,36 @@ func generatePlasma(w, h int, s float64) [][]uint8 {
 	return plasma
 }
 
-func renderPlasma(w, h int, plasma [][]uint8, palette [255]colorful.Color) {
+func renderPlasma(w, h int, plasma [][]uint8, palette [256]colorful.Color, fn string) {
 	m := image.NewRGBA(image.Rect(0, 0, w, h))
 
-	for s := 0; s < 64; s++ {
+	if *frames > 1 {
+		for s := 0; s < *frames; s++ {
+			for x := 0; x < w; x++ {
+				for y := 0; y < h; y++ {
+					m.Set(x, y, palette[uint8(int64(plasma[x][y])+int64(s)%255)])
+				}
+			}
+
+			if file, err := os.Create(fmt.Sprintf("%03d-%s", s, fn)); err == nil {
+				defer file.Close()
+				png.Encode(file, m)
+			}
+		}
+	} else {
+		s := time.Now().Unix()
+
 		for x := 0; x < w; x++ {
 			for y := 0; y < h; y++ {
-				m.Set(x, y, palette[(plasma[x][y]+uint8(s))%255])
+				m.Set(x, y, palette[uint8(int64(plasma[x][y])+(s)%255)])
 			}
 		}
 
-		fn := fmt.Sprintf("%03d-%s", s, *ofn)
-
 		if file, err := os.Create(fn); err == nil {
 			defer file.Close()
-			png.Encode(file, m)
+			if err := png.Encode(file, m); err == nil {
+				open(fn)
+			}
 		}
 	}
 }

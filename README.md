@@ -31,3 +31,7 @@ Animate plasma using the palette
 Tweaked the plasma generation
 
 ![Plasma progress 006](http://assets.c7.se/skitch/plasma_progress_006-20150118-175223.png)
+
+A few more tweaks
+
+![Plasma progress 007](http://assets.c7.se/skitch/plasma_progress_007-20150118-183534.png)
