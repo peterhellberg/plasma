@@ -51,3 +51,7 @@ Support for gradient palettes
 Generate plasma using the gradient palette
 
 ![Plasma progress 009](http://assets.c7.se/skitch/plasma_progress_009-20150118-212046.png)
+
+Another animation
+
+![Plasma progress 010](http://assets.c7.se/viz/plasma-progress-010.gif)

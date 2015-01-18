@@ -48,14 +48,14 @@ func main() {
 		{gradient.Hex("#005994"), 0.40},
 
 		{gradient.Hex("#F1F334"), 0.52},
-		{gradient.Hex("#EFC50F"), 0.54},
-		{gradient.Hex("#E5A50F"), 0.56},
-		{gradient.Hex("#E1800B"), 0.58},
+		{gradient.Hex("#6B0103"), 0.54},
+		{gradient.Hex("#F03C02"), 0.56},
+		{gradient.Hex("#1C0113"), 0.58},
 		{gradient.Hex("#D30B07"), 0.60},
 
-		{gradient.Hex("#6F8525"), 0.72},
-		{gradient.Hex("#B2C85B"), 0.74},
-		{gradient.Hex("#EAECB8"), 0.76},
+		{gradient.Hex("#002440"), 0.72},
+		{gradient.Hex("#005994"), 0.74},
+		{gradient.Hex("#004675"), 0.76},
 		{gradient.Hex("#002440"), 0.78},
 		{gradient.Hex("#005994"), 0.80},
 
