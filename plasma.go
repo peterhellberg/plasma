@@ -21,11 +21,17 @@ var (
 func main() {
 	flag.Parse()
 
-	m := image.NewRGBA(image.Rect(0, 0, *width, *height))
+	w := *width
+	h := *height
+
+	m := image.NewRGBA(image.Rect(0, 0, w, h))
 
 	for x := 0; x < *width; x++ {
 		for y := 0; y < *height; y++ {
-			c := uint8(128.0 + (128.0 * math.Sin(float64(x+y) / *scale)))
+			c := uint8(128.0 + (128.0 * math.Sin(math.Sqrt(
+				(float64(x-w)/2.0)*(float64(x-w)/2.0)+
+					(float64(y-h)/2.0)*(float64(y-h)/2.0)) / *scale)))
+
 			m.Set(x, y, color.RGBA{c, c, c, 0xff})
 		}
 	}
