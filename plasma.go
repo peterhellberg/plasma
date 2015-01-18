@@ -28,9 +28,9 @@ func main() {
 
 	for x := 0; x < *width; x++ {
 		for y := 0; y < *height; y++ {
-			c := uint8(128.0 + (128.0 * math.Sin(math.Sqrt(
-				(float64(x-w)/2.0)*(float64(x-w)/2.0)+
-					(float64(y-h)/2.0)*(float64(y-h)/2.0)) / *scale)))
+			c := uint8(
+				(128.0 + (128.0 * math.Sin(float64(x) / *scale)) +
+					128.0 + (128.0 * math.Sin(float64(y) / *scale))) / 2.0)
 
 			m.Set(x, y, color.RGBA{c, c, c, 0xff})
 		}

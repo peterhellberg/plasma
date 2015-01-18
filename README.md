@@ -15,3 +15,7 @@ Now with `X+Y`
 With the a square root thrown in for good measure
 
 ![Plasma progress 003](http://assets.c7.se/skitch/plasma_progress_003-20150118-145540.png)
+
+Combine the sines
+
+![Plasma progress 004](http://assets.c7.se/skitch/plasma_progress_004-20150118-150354.png)
