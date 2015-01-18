@@ -19,3 +19,11 @@ With the a square root thrown in for good measure
 Combine the sines
 
 ![Plasma progress 004](http://assets.c7.se/skitch/plasma_progress_004-20150118-150354.png)
+
+Generate a palette
+
+![Plasma palette](http://assets.c7.se/viz/plasma-palette.png)
+
+Animate plasma using the palette
+
+![Plasma progress 005](http://assets.c7.se/viz/plasma-progress-005.gif)
