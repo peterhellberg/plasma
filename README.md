@@ -35,3 +35,11 @@ Tweaked the plasma generation
 A few more tweaks
 
 ![Plasma progress 007](http://assets.c7.se/skitch/plasma_progress_007-20150118-183534.png)
+
+Change the palette
+
+![Plasma palette 2](http://assets.c7.se/viz/plasma-palette-2.png)
+
+Generate plasma using the new palette
+
+![Plasma progress 008](http://assets.c7.se/skitch/plasma_progress_008-20150118-204536.png)

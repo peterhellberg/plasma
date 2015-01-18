@@ -30,7 +30,7 @@ func main() {
 	w := *width
 	h := *height
 
-	palette := generatePalette()
+	palette := generatePalette(*scale)
 
 	renderPalette(palette, *pfn)
 
@@ -39,11 +39,15 @@ func main() {
 	renderPlasma(w, h, plasma, palette, *ofn)
 }
 
-func generatePalette() [256]colorful.Color {
+func generatePalette(s float64) [256]colorful.Color {
 	var palette [256]colorful.Color
 
 	for x := 0; x < 256; x++ {
-		palette[x] = colorful.Hsv(float64(x)*1.40625, 1, 1)
+		r := (128.0 + 128*math.Sin(math.Pi*float64(x)/16.0)) / 256.0
+		g := (128.0 + 128*math.Sin(math.Pi*float64(x)/128.0)) / 256.0
+		b := (8.0) / 256.0
+
+		palette[x] = colorful.Color{r, g, b}
 	}
 
 	return palette
