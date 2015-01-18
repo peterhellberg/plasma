@@ -24,9 +24,8 @@ func main() {
 	m := image.NewRGBA(image.Rect(0, 0, *width, *height))
 
 	for x := 0; x < *width; x++ {
-		c := uint8(128.0 + (128.0 * math.Sin(float64(x) / *scale)))
-
 		for y := 0; y < *height; y++ {
+			c := uint8(128.0 + (128.0 * math.Sin(float64(x+y) / *scale)))
 			m.Set(x, y, color.RGBA{c, c, c, 0xff})
 		}
 	}
