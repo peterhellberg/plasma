@@ -27,3 +27,7 @@ Generate a palette
 Animate plasma using the palette
 
 ![Plasma progress 005](http://assets.c7.se/viz/plasma-progress-005.gif)
+
+Tweaked the plasma generation
+
+![Plasma progress 006](http://assets.c7.se/skitch/plasma_progress_006-20150118-175223.png)

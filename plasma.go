@@ -73,10 +73,15 @@ func generatePlasma(w, h int, s float64) [][]uint8 {
 	for x := 0; x < w; x++ {
 		plasma[x] = make([]uint8, h)
 
+		i := float64(w) / 2.0
+		j := float64(h) / 2.0
+
 		for y := 0; y < h; y++ {
 			c := uint8(
-				(128.0 + (128.0 * math.Sin(float64(x)/s)) +
-					128.0 + (128.0 * math.Sin(float64(y)/s))) / 2.0)
+				(i + (j * math.Sin(float64(x)/(s*2))) +
+					i + (j * math.Sin(float64(y)/s)) +
+					i + (j * math.Sin(float64(x+y)/s*2)) +
+					i + (j * math.Sin(math.Sqrt(float64(x*x+y*y))/s))) / 4.0)
 
 			plasma[x][y] = c
 		}
