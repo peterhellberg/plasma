@@ -43,3 +43,11 @@ Change the palette
 Generate plasma using the new palette
 
 ![Plasma progress 008](http://assets.c7.se/skitch/plasma_progress_008-20150118-204536.png)
+
+Support for gradient palettes
+
+![Plasma palette 3](http://assets.c7.se/viz/plasma-palette-3.png)
+
+Generate plasma using the gradient palette
+
+![Plasma progress 009](http://assets.c7.se/skitch/plasma_progress_009-20150118-212046.png)

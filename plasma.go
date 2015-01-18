@@ -11,6 +11,8 @@ import (
 	"time"
 
 	"github.com/lucasb-eyer/go-colorful"
+
+	"github.com/peterhellberg/plasma/gradient"
 )
 
 var (
@@ -30,13 +32,56 @@ func main() {
 	w := *width
 	h := *height
 
-	palette := generatePalette(*scale)
+	palette := generateGradientPalette(gradient.Table{
+		{gradient.Hex("#005994"), 0.00},
+
+		{gradient.Hex("#6F8525"), 0.12},
+		{gradient.Hex("#B2C85B"), 0.14},
+		{gradient.Hex("#EAECB8"), 0.16},
+		{gradient.Hex("#002440"), 0.18},
+		{gradient.Hex("#005994"), 0.20},
+
+		{gradient.Hex("#6F8525"), 0.32},
+		{gradient.Hex("#B2C85B"), 0.34},
+		{gradient.Hex("#EAECB8"), 0.36},
+		{gradient.Hex("#002440"), 0.38},
+		{gradient.Hex("#005994"), 0.40},
+
+		{gradient.Hex("#F1F334"), 0.52},
+		{gradient.Hex("#EFC50F"), 0.54},
+		{gradient.Hex("#E5A50F"), 0.56},
+		{gradient.Hex("#E1800B"), 0.58},
+		{gradient.Hex("#D30B07"), 0.60},
+
+		{gradient.Hex("#6F8525"), 0.72},
+		{gradient.Hex("#B2C85B"), 0.74},
+		{gradient.Hex("#EAECB8"), 0.76},
+		{gradient.Hex("#002440"), 0.78},
+		{gradient.Hex("#005994"), 0.80},
+
+		{gradient.Hex("#6F8525"), 0.92},
+		{gradient.Hex("#B2C85B"), 0.94},
+		{gradient.Hex("#EAECB8"), 0.96},
+		{gradient.Hex("#002440"), 0.98},
+
+		{gradient.Hex("#005994"), 1.00},
+	})
 
 	renderPalette(palette, *pfn)
 
 	plasma := generatePlasma(w, h, *scale)
 
 	renderPlasma(w, h, plasma, palette, *ofn)
+}
+
+func generateGradientPalette(t gradient.Table) [256]colorful.Color {
+	var palette [256]colorful.Color
+
+	for x := 0; x < 256; x++ {
+		palette[x] = t.GetInterpolatedColorFor(float64(x) / 256.0)
+	}
+
+	return palette
 }
 
 func generatePalette(s float64) [256]colorful.Color {
