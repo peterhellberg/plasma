@@ -7,10 +7,12 @@ import (
 	"github.com/peterhellberg/plasma/palette"
 )
 
+// Plasma contains the plasma field data
 type Plasma struct {
 	Field [][]uint8
 }
 
+// Image generates a image of the plasma field
 func (p *Plasma) Image(w, h, s int, pa *palette.Palette) *image.RGBA {
 	m := image.NewRGBA(image.Rect(0, 0, w, h))
 
@@ -23,6 +25,7 @@ func (p *Plasma) Image(w, h, s int, pa *palette.Palette) *image.RGBA {
 	return m
 }
 
+// New generates a new plasma field
 func New(w, h int, s float64) *Plasma {
 	var f = make([][]uint8, w)
 
