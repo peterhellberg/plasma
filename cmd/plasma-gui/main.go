@@ -16,7 +16,8 @@ import (
 var (
 	width  = flag.Int("w", 128, "Width of the screen")
 	height = flag.Int("h", 120, "Height of the screen")
-	scale  = flag.Float64("s", 8.0, "Scale of the plasma")
+	scale  = flag.Int("s", 4, "Scaling factor")
+	size   = flag.Float64("size", 7.0, "Size of the plasma")
 
 	count int
 	p     *plasma.Plasma
@@ -51,10 +52,10 @@ func update(screen *ebiten.Image) error {
 func main() {
 	flag.Parse()
 
-	p = plasma.New(*width, *height, *scale)
+	p = plasma.New(*width, *height, *size)
 	m = p.Image(*width, *height, count, pa)
 
-	if err := ebiten.Run(update, *width, *height, 5, "Plasma GUI"); err != nil {
+	if err := ebiten.Run(update, *width, *height, *scale, "Plasma GUI"); err != nil {
 		log.Fatal(err)
 	}
 }
