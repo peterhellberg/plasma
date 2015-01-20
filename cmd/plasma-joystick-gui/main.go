@@ -26,6 +26,8 @@ var (
 	width  = flag.Int("w", 256, "Width of the screen")
 	height = flag.Int("h", 240, "Height of the screen")
 	scale  = flag.Int("s", 2, "Scaling factor")
+	frames = flag.Int("f", 120, "Frames in GIF output")
+	output = flag.String("o", "", "Output GIF filename")
 	size   = flag.Float64("size", 17.0, "Size of the plasma")
 
 	count int
@@ -122,7 +124,20 @@ func main() {
 	p = plasma.New(*width, *height, *size)
 	m = p.Image(*width, *height, count, pa)
 
-	if err := ebiten.Run(update, *width, *height, *scale, "Plasma Joystick GUI"); err != nil {
+	if *output == "" {
+		if err := ebiten.Run(update, *width, *height, *scale, "Plasma Joystick GUI"); err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	out, err := os.Create(*output)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer out.Close()
+
+	if err := ebiten.Run(ebitenutil.RecordScreenAsGIF(update, out, *frames),
+		*width, *height, *scale, "Plasma Joystick GUI"); err != nil {
 		log.Fatal(err)
 	}
 }
