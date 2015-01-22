@@ -55,3 +55,42 @@ Generate plasma using the gradient palette
 Another animation
 
 ![Plasma progress 010](http://assets.c7.se/viz/plasma-progress-010.gif)
+
+## Commands
+
+### CLI
+
+Rendering palette and plasma as PNG images.
+
+```
+Usage of plasma:
+  -h=512: Height of the image
+  -n=1: Number of frames to generate
+  -o="plasma.png": Output file name
+  -p="palette.png": Palette file name
+  -s=16: Scale of the plasma
+  -show=false: Show the generated image
+  -w=512: Width of the image
+```
+
+### GUI
+
+Window with a rotating plasma image.
+
+![Plasma GUI](http://assets.c7.se/skitch/Plasma_GUI-20150122-201318.png)
+
+Can also be transpiled into JavaScript by [GopherJS](http://www.gopherjs.org/)
+
+[![GopherJS Plasma](http://assets.c7.se/skitch/GopherJS_Plasma_in_Safari-20150122-201529.png)](http://data.gopher.se/js/plasma/)
+
+### Joystick GUI
+
+Control the plasma using a PS4 controller
+
+![Plasma Joystick GUI](http://assets.c7.se/skitch/Plasma_Joystick_GUI-20150120-005750.png)
+
+![Animation](http://assets.c7.se/viz/plasma-joystick-gui.gif)
+
+### Pixels GUI
+
+Using `screen.ReplacePixels` to render the plasma.
