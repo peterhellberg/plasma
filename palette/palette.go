@@ -9,10 +9,13 @@ import (
 	"github.com/peterhellberg/plasma/gradient"
 )
 
+// DefaultGradient contains a palette based on the default gradient
 var DefaultGradient = FromGradient(gradient.Default)
 
+// A Palette contains 256 colorful colors
 type Palette [256]colorful.Color
 
+// Image returns an image representation of the palette
 func (p *Palette) Image() *image.RGBA {
 	w := 256
 	h := 10
@@ -27,6 +30,7 @@ func (p *Palette) Image() *image.RGBA {
 	return m
 }
 
+// FromGradient generates a palette based on the given gradient table
 func FromGradient(t gradient.Table) *Palette {
 	var p Palette
 
@@ -37,6 +41,7 @@ func FromGradient(t gradient.Table) *Palette {
 	return &p
 }
 
+// Default returns the default palette
 func Default(s float64) *Palette {
 	var p Palette
 

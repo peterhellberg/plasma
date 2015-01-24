@@ -4,6 +4,7 @@ import (
 	"github.com/lucasb-eyer/go-colorful"
 )
 
+// Default is the default gradient
 var Default = Table{
 	{Hex("#005994"), 0.00},
 
