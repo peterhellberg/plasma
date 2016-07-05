@@ -13,10 +13,10 @@ import (
 )
 
 var (
-	width  = flag.Int("w", 128, "Width of the screen")
-	height = flag.Int("h", 120, "Height of the screen")
-	scale  = flag.Int("s", 4, "Scaling factor")
-	size   = flag.Float64("size", 7.0, "Size of the plasma")
+	width  = flag.Int("w", 256, "Width of the screen")
+	height = flag.Int("h", 256, "Height of the screen")
+	scale  = flag.Float64("s", 2.0, "Scaling factor")
+	size   = flag.Float64("size", 12.0, "Size of the plasma")
 
 	count int
 	p     *plasma.Plasma
