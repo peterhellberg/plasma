@@ -16,13 +16,20 @@ type Plasma struct {
 func (p *Plasma) Image(w, h, s int, pa *palette.Palette) *image.RGBA {
 	m := image.NewRGBA(image.Rect(0, 0, w, h))
 
+	p.Draw(m, s, pa)
+
+	return m
+}
+
+// Draw draws the plasma field on the provided image
+func (p *Plasma) Draw(m *image.RGBA, s int, pa *palette.Palette) {
+	w, h := m.Bounds().Max.X, m.Bounds().Max.Y
+
 	for x := 0; x < w; x++ {
 		for y := 0; y < h; y++ {
 			m.Set(x, y, pa[uint8(int64(p.Field[x][y])+int64(s)%255)])
 		}
 	}
-
-	return m
 }
 
 // New generates a new plasma field
