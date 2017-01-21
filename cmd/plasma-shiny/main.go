@@ -13,11 +13,12 @@ import (
 
 	"golang.org/x/mobile/event/key"
 	"golang.org/x/mobile/event/lifecycle"
+	"golang.org/x/mobile/event/paint"
 )
 
 const (
-	width  = 1024
-	height = 768
+	width  = 512
+	height = 512
 )
 
 func main() {
@@ -36,22 +37,20 @@ func main() {
 		}
 		defer b.Release()
 
-		go func(p *plasma.Plasma) {
+		go func() {
+			p := plasma.New(b.Size().X, b.Size().Y, 64.0)
 			i := 0
 
 			for {
 				time.Sleep(16 * time.Millisecond)
 
 				if visible {
-					p.Draw(b.RGBA(), i, palette.DefaultGradient)
-
-					w.Upload(image.Point{0, 0}, b, b.Bounds())
-					w.Publish()
-
 					i += 1
+					p.Draw(b.RGBA(), i, palette.DefaultGradient)
+					w.Send(paint.Event{})
 				}
 			}
-		}(plasma.New(b.Size().X, b.Size().Y, 64.0))
+		}()
 
 		for {
 			e := w.NextEvent()
@@ -63,6 +62,9 @@ func main() {
 				if e.Code == key.CodeEscape || e.Code == key.CodeQ {
 					return
 				}
+			case paint.Event:
+				w.Upload(image.Point{0, 0}, b, b.Bounds())
+				w.Publish()
 			}
 		}
 	})
