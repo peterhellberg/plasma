@@ -40,6 +40,55 @@ var Default = Table{
 	{Hex("#005994"), 1.00},
 }
 
+// RainbowDash is based on http://www.color-hex.com/color-palette/807
+var RainbowDash = Table{
+	{Hex("#ee4035"), 0.00},
+	{Hex("#f37736"), 0.25},
+	{Hex("#fdf498"), 0.50},
+	{Hex("#7bc043"), 0.75},
+	{Hex("#0392cf"), 1.00},
+}
+
+// MaterialDesign500 is based on https://www.materialpalette.com/colors (A500)
+var MaterialDesign500 = Table{
+	{Hex("#f44336"), 0.0000},
+	{Hex("#e91e63"), 0.0666},
+	{Hex("#9c27b0"), 0.1333},
+	{Hex("#673ab7"), 0.1999},
+	{Hex("#3f51b5"), 0.2666},
+	{Hex("#2196f3"), 0.3333},
+	{Hex("#03a9f4"), 0.3999},
+	{Hex("#00bcd4"), 0.4666},
+	{Hex("#009688"), 0.5332},
+	{Hex("#4caf50"), 0.5999},
+	{Hex("#8bc34a"), 0.6666},
+	{Hex("#cddc39"), 0.7326},
+	{Hex("#ffeb3b"), 0.7992},
+	{Hex("#ffc107"), 0.8658},
+	{Hex("#ff9800"), 0.9324},
+	{Hex("#ff5722"), 1.0000},
+}
+
+// MaterialDesign700 is based on https://www.materialpalette.com/colors (A700)
+var MaterialDesign700 = Table{
+	{Hex("#d50000"), 0.0000},
+	{Hex("#c51162"), 0.0666},
+	{Hex("#aa00ff"), 0.1333},
+	{Hex("#6200ea"), 0.1999},
+	{Hex("#304ffe"), 0.2666},
+	{Hex("#2962ff"), 0.3333},
+	{Hex("#0091ea"), 0.3999},
+	{Hex("#00b8d4"), 0.4666},
+	{Hex("#00bfa5"), 0.5332},
+	{Hex("#00c853"), 0.5999},
+	{Hex("#64dd17"), 0.6666},
+	{Hex("#aeea00"), 0.7326},
+	{Hex("#ffd600"), 0.7992},
+	{Hex("#ffab00"), 0.8658},
+	{Hex("#ff6d00"), 0.9324},
+	{Hex("#dd2c00"), 1.0000},
+}
+
 // Table contains the "keypoints" of the colorgradient you want to generate.
 // The position of each keypoint has to live in the range [0,1]
 type Table []struct {

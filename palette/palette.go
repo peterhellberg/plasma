@@ -12,6 +12,15 @@ import (
 // DefaultGradient contains a palette based on the default gradient
 var DefaultGradient = FromGradient(gradient.Default)
 
+// ShadesOfPurple contains a palette based on the rainbow dash gradient
+var RainbowDash = FromGradient(gradient.RainbowDash)
+
+// MaterialDesign500 contains a palette based on the material design 500 gradient
+var MaterialDesign500 = FromGradient(gradient.MaterialDesign500)
+
+// MaterialDesign700 contains a palette based on the material design 700 gradient
+var MaterialDesign700 = FromGradient(gradient.MaterialDesign700)
+
 // A Palette contains 256 colorful colors
 type Palette [256]colorful.Color
 
