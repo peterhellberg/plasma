@@ -27,14 +27,14 @@ func run() {
 
 	var s *pixel.Sprite
 
-	size := 12.0
-
-	p := plasmaPicture(256, 128, size, 0)
+	p := plasmaPicture(512, 256, 10.0, 0)
 	s = pixel.NewSprite(p, p.Bounds())
 
 	centerMatrix := pixel.IM.Moved(win.Bounds().Center()).Scaled(
-		win.Bounds().Center(), 4,
+		win.Bounds().Center(), 2,
 	)
+
+	size := 12.0
 
 	go func() {
 		c := time.Tick(32 * time.Millisecond)
@@ -54,8 +54,6 @@ func run() {
 	s.SetMatrix(centerMatrix)
 
 	for !win.Closed() {
-		win.Update()
-
 		s.Draw(win)
 
 		if win.Pressed(pixelgl.KeyUp) {
@@ -67,14 +65,16 @@ func run() {
 		}
 
 		if win.JustPressed(pixelgl.KeyEscape) || win.JustPressed(pixelgl.KeyQ) {
-			return
+			win.SetClosed(true)
 		}
+
+		win.Update()
 	}
 }
 
 func plasmaPicture(w, h int, s float64, i int) *pixel.PictureData {
 	return pixel.PictureDataFromImage(plasma.New(w, h, s).
-		Image(w, h, i, palette.DefaultGradient))
+		Image(w, h, i, palette.MaterialDesign700))
 }
 
 func main() {
