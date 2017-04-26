@@ -1,7 +1,6 @@
 package main
 
 import (
-	"image/color"
 	"time"
 
 	"github.com/faiface/pixel"
@@ -33,6 +32,10 @@ func run() {
 	p := plasmaPicture(256, 128, size, 0)
 	s = pixel.NewSprite(p, p.Bounds())
 
+	centerMatrix := pixel.IM.Moved(win.Bounds().Center()).Scaled(
+		win.Bounds().Center(), 4,
+	)
+
 	go func() {
 		c := time.Tick(32 * time.Millisecond)
 
@@ -43,15 +46,12 @@ func run() {
 
 			p := plasmaPicture(256, 128, size, i)
 
-			s.Set(p, p.Bounds())
+			s = pixel.NewSprite(p, p.Bounds())
+			s.SetMatrix(centerMatrix)
 		}
 	}()
 
-	s.SetMatrix(pixel.IM.Moved(win.Bounds().Center()).Scaled(
-		win.Bounds().Center(), 4,
-	))
-
-	win.Clear(color.Black)
+	s.SetMatrix(centerMatrix)
 
 	for !win.Closed() {
 		win.Update()
