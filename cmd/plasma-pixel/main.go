@@ -47,14 +47,13 @@ func run() {
 			p := plasmaPicture(256, 128, size, i)
 
 			s = pixel.NewSprite(p, p.Bounds())
-			s.SetMatrix(centerMatrix)
 		}
 	}()
 
-	s.SetMatrix(centerMatrix)
-
 	for !win.Closed() {
-		s.Draw(win)
+		win.SetClosed(win.JustPressed(pixelgl.KeyEscape) || win.JustPressed(pixelgl.KeyQ))
+
+		s.Draw(win, centerMatrix)
 
 		if win.Pressed(pixelgl.KeyUp) {
 			size += 0.2
@@ -62,10 +61,6 @@ func run() {
 
 		if win.Pressed(pixelgl.KeyDown) {
 			size -= 0.2
-		}
-
-		if win.JustPressed(pixelgl.KeyEscape) || win.JustPressed(pixelgl.KeyQ) {
-			win.SetClosed(true)
 		}
 
 		win.Update()
