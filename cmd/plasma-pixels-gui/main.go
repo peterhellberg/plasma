@@ -17,7 +17,7 @@ import (
 var (
 	width  = flag.Int("w", 256, "Width of the screen")
 	height = flag.Int("h", 256, "Height of the screen")
-	scale  = flag.Int("s", 2, "Scaling factor")
+	scale  = flag.Float64("s", 2, "Scaling factor")
 	size   = flag.Float64("size", 12.0, "Size of the plasma")
 
 	p *plasma.Plasma
